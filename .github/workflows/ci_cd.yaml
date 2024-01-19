@@ -44,7 +44,8 @@ jobs:
 
       - name: Build image
         run: |
-          docker build -t harisbegic01/secret-santa-backend:${{ env.TAG }} -f Secret-Santa-App/Dockerfile .
+          cd  Secret-Santa-App
+          docker build -t harisbegic01/secret-santa-backend:${{ env.TAG }} .
 
       - name: Push image
         run: |
