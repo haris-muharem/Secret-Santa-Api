@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for Backend App
+name: CI/CD Pipeline for Backend
 
 on:
   push:
@@ -67,6 +67,6 @@ jobs:
             TAG=${{ needs.build-and-push.outputs.tag }}
             docker stop secret-santa-backend | true
             docker rm secret-santa-backend | true
-            docker images --format '{{.Repository}}:{{.Tag}}' | grep "secret-santa-backend" | xargs docker rmi
+            docker images --format '{{.Repository}}:{{.Tag}}' | grep "secret-santa-backend" | xargs docker rmi | true
             docker pull harisbegic01/secret-santa-backend:$TAG
             docker run -d -p 8080:80 --name secret-santa-backend harisbegic01/secret-santa-backend:$TAG
